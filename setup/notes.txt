@@ -1,0 +1,13 @@
+Install:
+https://rancherdesktop.io/
+
+
+Reading resources:
+https://dbeaver.io/
+https://www.npmjs.com/package/express
+https://www.npmjs.com/package/pg
+
+
+Video resources:
+Rest API Crash Course - Introduction + Full Python API
+https://www.youtube.com/watch?v=qbLc5a9jdXo
