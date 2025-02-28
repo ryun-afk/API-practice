@@ -1,24 +1,33 @@
 Install:
-https://rancherdesktop.io/
-https://dbeaver.io/
-https://nodejs.org/en/download/
+    containerized applications
+        https://rancherdesktop.io/
+    database tool
+        https://dbeaver.io/
+    build web applications and servers
+        https://nodejs.org/en/download/
+
 
 
 Reading resources:
-https://www.npmjs.com/package/express
-https://www.npmjs.com/package/pg
-https://www.w3schools.com/sql
-https://expressjs.com/
+    https://www.npmjs.com/package/express
+    https://www.npmjs.com/package/pg
+    https://www.w3schools.com/sql
+    https://expressjs.com/
 
 
 Video resources:
-Rest API Crash Course - Introduction + Full Python API
-https://www.youtube.com/watch?v=qbLc5a9jdXo
-DBeaver Tutorial - How to Use DBeaver (SQL Editor)
-https://youtu.be/LEx96-CkB1Q
+    Rest API Crash Course - Introduction + Full Python API
+        https://www.youtube.com/watch?v=qbLc5a9jdXo
+    DBeaver Tutorial - How to Use DBeaver (SQL Editor)
+        https://youtu.be/LEx96-CkB1Q
 
 Powershell:
-docker-compose up -d
-docker-compose down
-docker-compose stop
-choco install dbeaver
+    docker-compose up -d
+    docker-compose down
+    docker-compose stop
+    choco install dbeaver
+
+CMD:
+    node --version
+    npm init -y
+    npm install express
