@@ -3,7 +3,7 @@ Install:
         https://rancherdesktop.io/
     database tool
         https://dbeaver.io/
-    build web applications and servers
+   Backend technology
         https://nodejs.org/en/download/
 
 
