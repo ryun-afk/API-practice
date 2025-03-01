@@ -7,7 +7,6 @@ Install:
         https://nodejs.org/en/download/
 
 
-
 Reading resources:
     https://www.npmjs.com/package/express
     https://www.npmjs.com/package/pg
@@ -31,3 +30,6 @@ CMD:
     node --version
     npm init -y
     npm install express
+
+Notes:
+do not commit yaml file...

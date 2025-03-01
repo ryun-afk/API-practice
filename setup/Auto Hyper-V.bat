@@ -2,3 +2,5 @@
 #bcedit
 
 bcdedit /set hypervisorlaunchtype auto
+wsl --update
+wsl --set-default-version 2
