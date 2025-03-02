@@ -1,27 +1,20 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 const port = 3000;
 
-app.use(express.static('public'));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
+// Routes to serve HTML pages
+const routes = ['/', '/login', '/signup', 
+    '/courses', '/instructors'];
 
-app.get('/login', (req, res) => {
-    res.sendFile(__dirname + '/public/login.html');
-});
-
-app.get('/signup', (req, res) => {
-    res.sendFile(__dirname + '/public/signup.html');
-});
-
-app.get('/courses', (req, res) => {
-    res.sendFile(__dirname + '/public/courses.html');
-});
-
-app.get('/instructors', (req, res) => {
-    res.sendFile(__dirname + '/public/instructors.html');
+routes.forEach((route) => {
+    app.get(route, (req, res) => {
+        const page = route === '/' ? 'index' : route.slice(1);
+        res.sendFile(path.join(__dirname, 'public', `${page}.html`));
+    });
 });
 
 app.listen(port, () => {
