@@ -20,8 +20,8 @@ app.get('/courses', (req, res) => {
     res.sendFile(__dirname + '/public/courses.html');
 });
 
-app.get('/professors', (req, res) => {
-    res.sendFile(__dirname + '/public/professors.html');
+app.get('/instructors', (req, res) => {
+    res.sendFile(__dirname + '/public/instructors.html');
 });
 
 app.listen(port, () => {
