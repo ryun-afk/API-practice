@@ -27,15 +27,17 @@ const addUser = (req, res) => {
         if (error) {throw error;}
         
         // check if username exists
-        if (results.rows.length > 0){
+        if (results){
             res.status(409).send('Username already exists');
         }
-
+        else{
+            pool.query(queries.addUser, [first_name, last_name, username, password], (error, results) => {
+                if (error) {throw error;}
+                res.status(201).send('User added to database');
+            });
+        }
         // add user to database
-        pool.query(queries.addUser, [first_name, last_name, username, password], (error, results) => {
-            if (error) {throw error;}
-            res.status(201).send('User added to database');
-        });
+        
     });
 };
 
