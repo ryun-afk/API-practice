@@ -14,8 +14,7 @@ const pool = new Pool({
 module.exports = pool;
 
 // Test the connection
-/* 
-pool.query('Select * from public.users',(err,result)=>{
+/*pool.query('Select * from users',(err,result)=>{
     console.log(err,result);
 })
 */

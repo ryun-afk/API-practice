@@ -19,6 +19,8 @@ Video resources:
         https://www.youtube.com/watch?v=qbLc5a9jdXo
     DBeaver Tutorial - How to Use DBeaver (SQL Editor)
         https://youtu.be/LEx96-CkB1Q
+    Build a Rest Api with NodeJS (JavaScript), Express, and PostgreSQL
+        https://www.youtube.com/watch?v=DihOP19LQdg
 
 Powershell:
     docker-compose up -d
