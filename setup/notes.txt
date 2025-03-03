@@ -21,6 +21,8 @@ Video resources:
         https://youtu.be/LEx96-CkB1Q
     Build a Rest Api with NodeJS (JavaScript), Express, and PostgreSQL
         https://www.youtube.com/watch?v=DihOP19LQdg
+    Node.Js Login and Registration with Database | Login, Logout and User Authentication | 1/2 |
+        https://www.youtube.com/watch?v=ILviQic0c8g
 
 Powershell:
     docker-compose up -d
@@ -40,4 +42,5 @@ CMD:
         js-yaml:        parse YAML content into JS object
 
 Notes:
-do not commit yaml file...
+POST url example:
+    http://localhost:3000/signup?first_name=first&last_name=last&username=flas&password=1234

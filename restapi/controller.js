@@ -17,11 +17,16 @@ const getUserById = (req, res) => {
 };
 
 const addUser = (req, res) => {
-    const { first_name, last_name, username, password } = req.body;
+    const {first_name, last_name, username, password} = req.body;
+    // check if fields are missing
+    if (!first_name || !last_name || !username || !password) {
+        res.status(400).send('Missing required fields');
+    }   
 
     pool.query(queries.checkUsernameExists, [username], (error,results)=>{
-        // check if username exists
         if (error) {throw error;}
+        
+        // check if username exists
         if (results.rows.length > 0){
             res.status(409).send('Username already exists');
         }
@@ -29,8 +34,7 @@ const addUser = (req, res) => {
         // add user to database
         pool.query(queries.addUser, [first_name, last_name, username, password], (error, results) => {
             if (error) {throw error;}
-            res.status(201).send('User added with ID: ' + results.insertId);
-            console.log('User added with ID: ' + results.insertId);
+            res.status(201).send('User added to database');
         });
     });
 };
