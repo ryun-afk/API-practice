@@ -29,12 +29,13 @@ Powershell:
 CMD:
     node --version
     npm init -y
-    npm install express pg bcryptjs jsonwebtoken dotenv
+    npm install express pg bcryptjs jsonwebtoken dotenv js-yaml
         express:        web framework for node.js
         pg:             PostgreSQL client for Node.js
         bcryptjs:       password hashing
         jsonwebtoken:   handling authentication tokens
         dotenv:         manage environment variables
+        js-yaml:        parse YAML content into JS object
 
 Notes:
 do not commit yaml file...

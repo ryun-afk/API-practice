@@ -22,15 +22,15 @@ Communication & Collaboration:
 Discussion forums, chat, and messaging features.
 Virtual classrooms or video conferencing integrations.
 
-Notifications & Reminders:
+Notifications & Reminders: (void)
 Automatic alerts for deadlines, new content, or announcements.
 Email or in-app notifications.
 
-Grading & Feedback:
+Grading & Feedback: (void)
 Tools to grade assignments and quizzes.
 Provide detailed feedback and scores.
 
-Certificate & Badge Management:
+Certificate & Badge Management: (void)
 Issue certificates or digital badges upon course completion.
 Track credentials earned by users.
 
