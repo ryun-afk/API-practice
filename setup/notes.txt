@@ -14,7 +14,7 @@ Reading resources:
     https://expressjs.com/
 
 
-Video resources:
+Helpful Videos:
     Rest API Crash Course - Introduction + Full Python API
         https://www.youtube.com/watch?v=qbLc5a9jdXo
     DBeaver Tutorial - How to Use DBeaver (SQL Editor)
@@ -23,6 +23,8 @@ Video resources:
         https://www.youtube.com/watch?v=DihOP19LQdg
     Node.Js Login and Registration with Database | Login, Logout and User Authentication | 1/2 |
         https://www.youtube.com/watch?v=ILviQic0c8g
+    The Right Way To Build REST APIs
+        https://www.youtube.com/watch?v=CVBpYfPKGlE
 
 Powershell:
     docker-compose up -d
@@ -40,18 +42,3 @@ CMD:
         jsonwebtoken:   handling authentication tokens
         dotenv:         manage environment variables
         js-yaml:        parse YAML content into JS object
-
-Notes:
-POST example:
-http://localhost:3000/signup?first_name=first&last_name=last&username=flas&password=1234
-
-curl -X POST http://localhost:3000/api/signup \
-     -H "Content-Type: application/json" \
-     -d '{
-           "first_name": "John",
-           "last_name": "Doe",
-           "email": "john.doe@example.com"
-         }'
-DELETE example:
-curl -X DELETE http://localhost:3000/api/123
-
