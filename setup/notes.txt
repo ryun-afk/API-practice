@@ -42,5 +42,16 @@ CMD:
         js-yaml:        parse YAML content into JS object
 
 Notes:
-POST url example:
-    http://localhost:3000/signup?first_name=first&last_name=last&username=flas&password=1234
+POST example:
+http://localhost:3000/signup?first_name=first&last_name=last&username=flas&password=1234
+
+curl -X POST http://localhost:3000/api/signup \
+     -H "Content-Type: application/json" \
+     -d '{
+           "first_name": "John",
+           "last_name": "Doe",
+           "email": "john.doe@example.com"
+         }'
+DELETE example:
+curl -X DELETE http://localhost:3000/api/123
+
