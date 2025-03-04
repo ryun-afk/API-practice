@@ -36,6 +36,25 @@ const addUser = (req, res) => {
     });
 };
 
+const updateUser = (req, res)=> {
+    const user_id = parseInt(req.params.user_id);
+    const {first_name, last_name, username, password} = req.body;
+
+    pool.query(queries.getUserById, [user_id], (error,results)=>{
+        if (error) {throw error;}
+        if (results.rows.length===0){
+            res.status(404).json({message:'User not found'});
+        }
+        else {
+            pool.query(queries.updateUser, [first_name, last_name, username, password, user_id], (error, results) => {
+                if (error) {throw error;}
+                res.status(200).json({message:'User updated successfully'});
+            });
+        }
+    });
+}
+
+
 const deleteUser = (req, res) => {
     const user_id = parseInt(req.params.user_id);
     pool.query(queries.deleteUser, [user_id],(error, results) => {
@@ -51,5 +70,6 @@ module.exports = {
     getUsers,
     getUserById,
     addUser,
+    updateUser,
     deleteUser,
 };
