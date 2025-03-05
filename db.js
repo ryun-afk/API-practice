@@ -10,11 +10,4 @@ const pool = new Pool({
     port: process.env.DB_PORT
 })
 
-// exports pool for other files to use
 module.exports = pool;
-
-// Test the connection
-/*pool.query('Select * from users',(err,result)=>{
-    console.log(err,result);
-})
-*/
