@@ -3,14 +3,8 @@ const controller = require('./controller');
 
 const router = Router();
 
-router.get('/api/user', controller.getUsers);
-router.get('/api/user/:user_id',controller.getUserById);
-router.post('/api/user',controller.addUser);
-router.put('/api/user/:user_id',controller.updateUser);
-router.delete('/api/:user_id',controller.deleteUser);
-
 /*
-Testing GET, POST, PUT, DELETE with curl
+GET, POST, PUT, DELETE with curl
 curl -X <HTTP_METHOD> http://localhost:3000/api/user
 
 examples:
@@ -19,7 +13,7 @@ examples:
     
     curl -X POST http://localhost:3000/api/user
     -H 'Content-Type: application/json'
-    -d '{"first_name":"xyz","last_name":"xyz","username":"xyz","password":"xyz"}'
+    -d '{"first_name":"Alice","last_name":"Johnson","username":"ajohnson","password":"xyz"}'
 
     curl -X PUT http://localhost:3000/api/user/15
     -H 'Content-Type: application/json'
@@ -27,6 +21,12 @@ examples:
 
     curl -X DELETE http://localhost:3000/api/15
 */
+
+router.get('/api/user', controller.getUsers);
+router.get('/api/user/:user_id',controller.getUserById);
+router.post('/api/user',controller.addUser);
+router.put('/api/user/:user_id',controller.updateUser);
+router.delete('/api/:user_id',controller.deleteUser);
 
 
 router.post('/signup',controller.addUser);
