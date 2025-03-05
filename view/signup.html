@@ -7,7 +7,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="/favicon/site.webmanifest">
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
@@ -32,7 +32,8 @@
             margin-bottom: 20px;
         }
         input[type="text"],
-        input[type="email"],
+        input[type="text"],
+        input[type="text"],
         input[type="password"] {
             width: 100%;
             padding: 10px;
@@ -62,7 +63,7 @@
 
 <div class="signup-container">
     <h2>Create an Account</h2>
-    <form action="/signup" method="POST">
+    <form id = "signupForm" action="/signup" method="POST">
         <input type="text" id="first_name" name="first_name" placeholder="First Name" required>
         <input type="text" id="last_name" name="last_name" placeholder="Last Name" required>
         <input type="text" id="username" name="username" placeholder="Username" required>
