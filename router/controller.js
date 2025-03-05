@@ -19,6 +19,17 @@ const getUserById = (req, res) => {
     });
 };
 
+const getUserByUsername = (req, res) => {
+    const user_id = parseInt(req.params.username);
+    pool.query(queries.getUserByUsername, [username],(error, results) => {
+        if (error) {throw error;}
+        if (!results.rows.length===0){
+            res.status(404).json({message:'User not found'});
+        }
+        res.status(200).json(results.rows);
+    });
+};
+
 const addUser = (req, res) => {
     const {first_name, last_name, username, password} = req.body;
     pool.query(queries.addUser, [first_name, last_name, username, password], (error, results) => {
@@ -51,7 +62,6 @@ const deleteUser = (req, res) => {
     });
 }
 
-
 const signupUser = (req, res) => {
     let {first_name, last_name, username, password} = req.body;
     pool.query(queries.getUserByUsername, [username], (error, results) => {
@@ -68,11 +78,31 @@ const signupUser = (req, res) => {
 }
 
 
+const loginUser =(req,res) => {
+    let {username, password} = req.body;
+    pool.query(queries.getUserByUsername, [username], (error, results) => {
+        if (error) {throw error;}
+        if (results.rows.length===0){
+            res.status(404).json({message:'User not found'});
+        }
+        else{
+            if (results.rows[0].password===password){
+                res.status(200).json({message:'Login successful'});
+            }
+            else{
+                res.status(401).json({message:'Incorrect password'});
+            }
+        }
+    });
+}
+
 module.exports = {
     getUsers,
     getUserById,
+    getUserByUsername,
     addUser,
     updateUser,
     deleteUser,
     signupUser,
+    loginUser,
 };
