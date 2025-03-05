@@ -22,13 +22,15 @@ examples:
     curl -X DELETE http://localhost:3000/api/15
 */
 
+// api end-points
 router.get('/api/user', controller.getUsers);
 router.get('/api/user/:user_id',controller.getUserById);
 router.post('/api/user',controller.addUser);
 router.put('/api/user/:user_id',controller.updateUser);
 router.delete('/api/:user_id',controller.deleteUser);
 
-
 router.post('/signup',controller.addUser);
+router.post('/login',controller.addUser);
+
 
 module.exports = router;
