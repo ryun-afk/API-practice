@@ -9,9 +9,12 @@ Install:
 
 Reading resources:
     https://www.npmjs.com/package/express
+    https://www.npmjs.com/package/express-session
     https://www.npmjs.com/package/pg
+    https://www.npmjs.com/package/ejs
     https://www.w3schools.com/sql
     https://expressjs.com/
+    
 
 
 Helpful Videos:

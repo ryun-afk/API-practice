@@ -84,17 +84,19 @@
             try {
                 const response = await fetch('http://localhost:3000/signup', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: {'Content-Type': 'application/json'},
                     body: JSON.stringify(formData)
                 });
 
                 const result = await response.json();
-                if (response.ok) {window.location.href = '/login';}
-                
+                if (response.ok) {
+                    alert('Signup successful! Redirecting to login...');
+                    window.location.href = '/login';
+                } else {
+                    alert(result.message || 'Signup failed. Please try again.');
+                }
+
             } catch (error) {
-                console.error('Error:', error);
                 alert('Failed to sign up. Please try again.');
             }
         });
