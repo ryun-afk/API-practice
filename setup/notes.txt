@@ -54,7 +54,7 @@ examples:
     
     curl -X POST http://localhost:3000/api/user
     -H 'Content-Type: application/json'
-    -d '{"first_name":"Alice","last_name":"Johnson","username":"ajohnson","password":"xyz"}'
+    -d '{"first_name":"Alice","last_name":"Johnson","username":"alicej","password":"xyz"}'
 
     curl -X PUT http://localhost:3000/api/user/15
     -H 'Content-Type: application/json'
