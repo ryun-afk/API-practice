@@ -1,4 +1,4 @@
 docker-compose.yaml
 .env
 node_modules
-setup/notes.txt
+.setup
