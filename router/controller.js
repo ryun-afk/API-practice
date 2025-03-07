@@ -10,9 +10,10 @@ const getUsers = (req, res) => {
 
 const getUserById = (req, res) => {
     const user_id = parseInt(req.params.user_id);
+
     pool.query(queries.getUserById, [user_id],(error, results) => {
         if (error) {throw error;}
-        if (!results.rows.length===0){
+        if (results.rows.length===0){
             return res.status(404).json({message:'User not found'});
         }
         return res.status(200).json(results.rows);
@@ -21,6 +22,7 @@ const getUserById = (req, res) => {
 
 const getUserByUsername = (req, res) => {
     const username = req.params.username;
+    
     pool.query(queries.getUserByUsername, [username],(error, results) => {
         if (error) {throw error;}
 
