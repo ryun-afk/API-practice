@@ -119,7 +119,6 @@ const loginUser = (req, res) => {
         if (user.password !== password) {
             return res.status(401).json({ message: 'Incorrect password' });
         }
-
         return res.status(200).json({ message: 'Login successful' });
     });
 };

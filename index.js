@@ -12,13 +12,11 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'view')));
-
 // Mount routes (after middleware)
 app.use('/', route);
 
-// Fallback route to serve static HTML pages
+// Serve static files
+app.use(express.static(path.join(__dirname, 'view')));
 app.get('*', (req, res) => {
     const page = req.path === '/' ? 'index' : req.path.substring(1);
     const filePath = path.join(__dirname, 'view', `${page}.html`);
