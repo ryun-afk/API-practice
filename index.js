@@ -5,15 +5,18 @@ const path = require('path');
 const app = express();
 const port = 3000;
 
+app.set('view engine', 'ejs');
 
-// middleware
+// Middleware
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.static(path.join(__dirname, 'view')));
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// Mount routes (after middleware)
 app.use('/', route);
 
 // Fallback route to serve HTML pages

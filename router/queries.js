@@ -6,7 +6,7 @@ const updateUser = 'UPDATE public.users SET first_name = $1, last_name = $2, use
 const deleteUser = 'DELETE FROM public.users WHERE user_id = $1';
 
 module.exports = {
-    getUsers,
+    getUser
     getUserById,
     getUserByUsername,
     addUser,
