@@ -7,6 +7,11 @@
     <body>
         <div class="login-container">
             <h2>Welcome</h2>
+            <% if (message) { %>
+                <div class="error-message" style="color: red; font-size: 14px;">
+                    <%= message %>
+                </div>
+            <% } %>
             <form method="POST" action="/login">
                 <input type="text" id="username" name="username" required placeholder="Enter username">
                 <input type="password" id="password" name="password" required placeholder="Enter password">
