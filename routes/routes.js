@@ -4,13 +4,17 @@ const router = express.Router();
 const { 
     loginUser, 
     registerUser, 
-    logoutUser, 
-    isAuthenticated, 
+    logoutUser,  
 } = require('../controllers/authController');
+
+const {
+    isAuthenticated,
+    notAuthenticated,
+} = require('../middlewares/authMiddleware');
 
 // end-points
 router.get('/register',(req, res) => {res.render('register');});
-router.get('/login',(req, res) => {res.render('login');});
+router.get('/login',notAuthenticated, (req, res) => {res.render('login');});
 router.get('/dashboard',isAuthenticated, (req, res) => {res.render('dashboard',{user:req.session.user});});
 router.get('/logout',logoutUser);
 
