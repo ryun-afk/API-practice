@@ -2,19 +2,20 @@
 <html lang="en">
     <%- include('partials/head', { 
         title: 'Login',
-        extraCSS: '/css/login.css'
+        extraCSS: '/css/auth.css'
     }) %>
     <body>
-        <div class="login-container">
+        <div class="container">
             <h2>Welcome</h2>
-            <% if (message) { %>
-                <div class="error-message" style="color: red; font-size: 14px;">
-                    <%= message %>
-                </div>
+            <% if (typeof message !== 'undefined' && message) { %>
+                <%- include('partials/authError', { 
+                    message: message
+                }) %>
             <% } %>
+            
             <form method="POST" action="/login">
-                <input type="text" id="username" name="username" required placeholder="Enter username">
-                <input type="password" id="password" name="password" required placeholder="Enter password">
+                <input type="text" name="username" required placeholder="Enter username">
+                <input type="password" name="password" required placeholder="Enter password">
                 <button type="submit" class="btn">Login</button>
             </form>
             <div class="footer">
