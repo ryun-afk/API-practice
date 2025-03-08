@@ -1,72 +1,78 @@
-
+/* Global reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body styling */
 body {
     font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #107865, #20317c);
-    color: #333;
+    background: linear-gradient(135deg, #2b5876, #4e4376);
+    color: #ddd;
     padding: 20px;
-    text-align: center;
 }
 
+/* Header styling */
 header {
-    background: #007bff;
+    background: #1f1f1f;
     color: #fff;
     padding: 20px 0;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
 }
 
 header h1 {
-    margin-bottom: 10px;
+    margin: 0;
 }
 
+/* Navigation bar */
 nav {
-    background: #0056b3;
+    background: #333;
     padding: 10px 0;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 nav a {
-    color: #fff;
+    color: #bbb;
     text-decoration: none;
     margin: 0 15px;
     font-weight: bold;
-    padding: 10px 15px; /* Add padding for better spacing */
-    border-radius: 5px; /* Rounded buttons */
+    padding: 10px 15px;
+    border-radius: 5px;
 }
 
 nav a:hover {
-    background: #74EBD5; /* Light background on hover */
-    color: #333; 
+    background-color: #5c5c5c;
+    color: #f4f4f4;
 }
 
+/* Section styling */
 section {
     margin: 20px 0;
     padding: 20px;
-    background: #fff;
+    background: #252525;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     align-content: center;
 }
 
+/* Footer styling */
 footer {
     margin-top: 20px;
     padding: 10px;
-    background: #007bff;
-    color: #fff;
+    background: #1f1f1f;
+    color: #bbb;
     border-radius: 10px;
 }
 
+/* Error message styling */
 .error-message {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background-color: #4e2727;
+    color: #f5b5b5;
+    border: 1px solid #b33a3a;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -76,10 +82,10 @@ footer {
 }
 
 .error-message a {
-    color: #721c24;
+    color: #f5b5b5;
     text-decoration: underline;
 }
 
 .error-message a:hover {
-    color: #5c1d18;
+    color: #ff6b6b;
 }
