@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-</head>
-<body>
-    <h2>Welcome to the Dashboard</h2>
-    <p>Here you can view all your courses and manage your account.</p>
-</body>
-</html>
+    <head>
+        <title>Dashboard</title>
+        <%- include('partials/head') %>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/dashboard.css">
+    </head>
+    <body>
+        <div class="sidebar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <header>
+                <h2>Welcome<%= user.first_name %> <%= user.last_name %></h2>
+                <p><%= user.username %></p>
+            </header>
+            
+            <div class="dashboard">
+                <div class="dashboard-card">
+                    <h2>Assignments</h2>
+                    <p>View and track your assignments</p>
+                    <a href="/assignments">Go to Assignments</a>
+                </div>
+    
+                <div class="dashboard-card">
+                    <h2>Grades</h2>
+                    <p>Check your current grades</p>
+                    <a href="/grades">View Grades</a>
+                </div>
+    
+                <div class="dashboard-card">
+                    <h2>Courses</h2>
+                    <p>See the courses you're enrolled in</p>
+                    <a href="/courses">View Courses</a>
+                </div>
+    
+                <div class="dashboard-card">
+                    <h2>Schedule</h2>
+                    <p>Track your class schedule</p>
+                    <a href="/schedule">View Schedule</a>
+                </div>
+    
+                <div class="dashboard-card">
+                    <h2>Resources</h2>
+                    <p>Access study materials and resources</p>
+                    <a href="/resources">View Resources</a>
+                </div>
+            </div>
+    
+            <footer>
+                <a href="/logout" class="logout-button">Logout</a>
+            </footer>
+        </div>
+    </body>
+    </html>
