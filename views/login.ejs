@@ -4,9 +4,17 @@
         <title>Login</title>
         <%- include('partials/head') %>
         <link rel="stylesheet" href="/css/styles.css">
-        <link rel="stylesheet" href="/css/auth.css">
+        <link rel="stylesheet" href="/css/login-register.css">
     </head>
     <body>
+        <div class="sidebar">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+        
         <div class="container">
             <h2>Login</h2>
             <%- include('partials/errors', { message: message }) %>
