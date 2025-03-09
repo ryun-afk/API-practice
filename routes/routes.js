@@ -13,8 +13,8 @@ const {
 } = require('../middlewares/authMiddleware');
 
 // end-points
-router.get('/register',(req, res) => {res.render('register');});
-router.get('/login',notAuthenticated, (req, res) => {res.render('login');});
+router.get('/register',(req, res) => {res.render('register',{message: ''});});
+router.get('/login',notAuthenticated, (req, res) => {res.render('login',{message: ''});});
 router.get('/dashboard',isAuthenticated, (req, res) => {res.render('dashboard',{user:req.session.user});});
 router.get('/logout',logoutUser);
 

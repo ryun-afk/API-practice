@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%-  include('partials/head', { 
-        title: 'Register',
-        extraCSS: '/css/auth.css'
-    }) %>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>Register</title>
+        <%- include('partials/favicon') %>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/auth.css">
+    </head>
     <body>
         <div class="container">
             <h2>Create an Account</h2>
-            <% if (typeof message !== 'undefined' && message) { %>
-                <%- include('partials/authError', { 
-                    message: message
-                }) %>
-            <% } %>
-            
+            <%- include('partials/errors', { message: message }) %>
             <form method="POST" action="/register">
                 <input type="text" name="username" placeholder="Create Username" required>
                 <input type="password" name="password" placeholder="Create Password" required>
