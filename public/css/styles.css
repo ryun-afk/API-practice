@@ -67,3 +67,50 @@ footer {
     color: #bbb;
     border-radius: 10px;
 }
+
+/* Sidebar Styles */
+.sidebar {
+    height: 100vh; /* Full height */
+    width: 130px; /* Sidebar width */
+    position: fixed; /* Stays fixed on the side */
+    top: 0;
+    left: 0;
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding-top: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #ecf0f1; /* Light text */
+    text-decoration: none; /* Remove underline */
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Content area */
+.content {
+    margin-left: 130px; /* Prevent content from being hidden under the sidebar */
+    padding: 20px;
+}
+
+/* Responsive (Mobile) */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 130px; /* Smaller width on mobile */
+    }
+    .content {
+        margin-left: 130px; /* Adjust content for smaller sidebar */
+    }
+}
