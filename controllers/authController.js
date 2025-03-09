@@ -1,5 +1,4 @@
 const bcrypt = require('bcryptjs');
-const { body, validationResult } = require('express-validator');
 const pool = require('../config/dbconfig.js');
 const queries = require('../db/queries.js');
 
@@ -10,7 +9,7 @@ const loginUser = async (req, res) => {
         const {username,password} = req.body;
         const result = await pool.query(queries.getUserByUsername,[username]);
         if (result.rows.length === 0) {
-            return res.render('/login',{
+            return res.render('login',{
                 message: 'Invalid credential'
             });
         }
@@ -19,7 +18,7 @@ const loginUser = async (req, res) => {
         const user = result.rows[0];
         const isPasswordValid = await bcrypt.compare(password,user.password);
         if (!isPasswordValid) {
-            return res.render('/login',{
+            return res.render('login',{
                 message: 'Invalid credential'
             });
         }
@@ -29,13 +28,12 @@ const loginUser = async (req, res) => {
             username:user.username,
             first_name: user.first_name,
             last_name: user.last_name,
-            role: user.role,
         };
 
         return res.redirect('/dashboard');
     } catch (error) {
         console.error('Login error: ', error);
-        return res.render('/login',{
+        return res.render('login',{
             message: 'Internal Server Error'
         });
     }
@@ -47,14 +45,14 @@ const registerUser = async (req,res) => {
         const {username,password} = req.body;
         const existingUser = await pool.query(queries.getUserByUsername,[username]);
         if (existingUser.rows.length > 0) { 
-            return res.render('/register',{
+            return res.render('register',{
                 message:'Username is taken'
             });
         };
 
         const hashedPassword = await bcrypt.hash(password,10);
-        pool.query(queries.addUser,[username,hashedPassword]);
-        return res.redirect('/login');
+        await pool.query(queries.addUser,[username,hashedPassword]);
+        return res.redirect('login');
 
     } catch (error){
         console.error('Registration Error: ', error);
@@ -65,7 +63,7 @@ const registerUser = async (req,res) => {
 };
 
 // Logout Controller
-const logoutUser = (req, res) => {
+const logoutUser = async (req, res) => {
     try {
         req.session.destroy((err) => {
             if (err) {
