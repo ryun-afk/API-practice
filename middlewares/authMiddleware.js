@@ -13,8 +13,6 @@ const notAuthenticated = (req, res, next) => {
     } else{
         return next();
     }
-    
-    
 };
 
 module.exports = {
