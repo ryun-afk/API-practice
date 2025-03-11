@@ -71,9 +71,7 @@ const logoutUser = async (req, res) => {
                     message: 'Error during logout'
                 });
             }
-            return res.status(200).json({
-                message: 'Logged out successfully'
-            });
+            return res.redirect('login');
         });
     } catch {
         console.error('Logout Error: ', error);
