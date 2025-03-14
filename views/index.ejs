@@ -2,26 +2,11 @@
 <html>
     <head>
         <title>Learning Management System Project</title>
-        <!-- use partials when index is ejs type -->
-        <meta charset='UTF-8'>
-        <meta name = 'viewport' content = 'width=device-width,initial-scale=1.0'>
-        <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
-        <link rel="manifest" href="images/site.webmanifest">
-        <!-- end partials -->
+        <%- include('partials/head') %>
         <link rel ='stylesheet' href='css/styles.css'>
     </head>
 <body>
-    <div class="sidebar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <!-- Change index.html to index.ejs -->
-            <!-- make it dynamic to add profike and logout -->
-        </ul>
-    </div>
-
+    <%- include('partials/sidebar', { isLoggedIn: isLoggedIn }) %>
     <div class="content">
         <!-- Header -->
         <header>
