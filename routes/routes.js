@@ -22,10 +22,11 @@ router.get('/register',notAuthenticated, (req, res) => {res.render('register',{m
 router.get('/login',notAuthenticated, (req, res) => {res.render('login',{message: ''});});
 
 router.get('/dashboard',isAuthenticated, (req, res) => {res.render('dashboard',{user:req.session.user});});
-//router.get('/settings',isAuthenticated, (req, res) => {res.render('settings',{message: ''});});
+router.get('/settings',isAuthenticated, (req, res) => {res.render('settings',{message: ''});});
 router.get('/logout',logoutUser);
 
 router.post('/register',registerUser);
 router.post('/login',loginUser);
+router.post('/settings',isAuthenticated, updateUser);
 
 module.exports = router;

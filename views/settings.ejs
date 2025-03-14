@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Settings</title>
+        <%- include('partials/head') %>
+        <link rel="stylesheet" href="/css/styles.css">
+        <link rel="stylesheet" href="/css/login-register.css">
+    </head>
+    <body>
+        <div class="sidebar">
+            <%- include('partials/sidebar_base') %>
+            <%- include('partials/sidebar_student') %>
+        </div>
+        <div class="container">
+            <h2>Update Information</h2>
+            <form method="POST" action="/settings">
+                <input type="text" name="firstName" placeholder="First Name" required>
+                <input type="text" name="lastName" placeholder="Last Name" required>
+
+                <h3>Change Password (optional)</h3>
+                <input type="password" name="oldPassword" placeholder="Enter Old Password">
+                <input type="password" name="newPassword" placeholder="Enter New Password">
+                <input type="password" name="confirmPassword" placeholder="Confirm New Password">
+                <button type="submit" class="btn">Update Info</button>
+            </form>
+            <div class="footer">
+                <%- include('partials/errors', { message: message }) %>
+            </div>
+        </div>
+    </body>
+    </html>

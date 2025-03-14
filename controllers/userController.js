@@ -1,33 +1,35 @@
-// Get user profile
-const getUserProfile = async (req, res) => {
-    try {
-        const userId = req.session.user.id;
-        const user = await pool.query(queries.getUserById, [userId]);
-
-        if (user.rows.length === 0) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.render('profile', { user: user.rows[0] });
-    } catch (error) {
-        console.error('Get Profile Error:', error);
-        res.status(500).json({ message: 'Internal Server Error' });
-    }
-};
+const bcrypt = require('bcryptjs');
+const pool = require('../config/dbconfig.js');
+const queries = require('../db/queries.js');
 
 // Update user details
+const updateUser = async (req,res) => {
+    const { firstName, lastName, oldPassword, newPassword, confirmPassword } = req.body;
+    const userID = req.session.user.id;
 
-// Delete user account
-const deleteUser = async (req, res) => {
-    try {
-        const userId = req.session.user.id;
-        await pool.query(queries.deleteUser, [userId]);
-        req.session.destroy();
-        res.redirect('/register');
-    } catch (error) {
-        console.error('Delete User Error:', error);
-        res.status(500).json({ message: 'Failed to delete account' });
+    // Validate required fields
+    if (!firstName || !lastName) {
+        console.log(firstName,lastName)
+        return res.render('settings',{
+            message: 'First name and last name are required'
+        });
     }
-};
 
-module.exports = { getUserProfile, deleteUser };
+    try {
+        // Update database
+        await pool.query(queries.updateName, [firstName, lastName, userID]);
+        return res.render('settings',{
+            message: 'User details updated'
+        });
+    } catch (error) {
+        // Handle any database errors
+        console.error("Error updating user:", error);
+        return res.render('settings',{
+            message: 'Error updating user details'
+        });
+    }
+}
+
+module.exports = { 
+    updateUser, 
+};
