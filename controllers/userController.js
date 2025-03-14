@@ -16,17 +16,6 @@ const getUserProfile = async (req, res) => {
 };
 
 // Update user details
-const updateUser = async (req, res) => {
-    try {
-        const { first_name, last_name, username } = req.body;
-        const userId = req.session.user.id;
-        await pool.query(queries.updateUser, [first_name, last_name, username, userId]);
-        res.redirect('/profile');
-    } catch (error) {
-        console.error('Update User Error:', error);
-        res.status(500).json({ message: 'Failed to update user' });
-    }
-};
 
 // Delete user account
 const deleteUser = async (req, res) => {
@@ -41,4 +30,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-module.exports = { getUserProfile, updateUser, deleteUser };
+module.exports = { getUserProfile, deleteUser };

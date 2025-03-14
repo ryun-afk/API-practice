@@ -23,6 +23,7 @@ const loginUser = async (req, res) => {
             });
         }
         
+        // create session
         req.session.user = {
             id: user.user_id,
             username:user.username,

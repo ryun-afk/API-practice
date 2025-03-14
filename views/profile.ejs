@@ -10,27 +10,16 @@
     <%- include('partials/sidebar') %>    
     <div class="container">
         <h2>Profile</h2>
-        <%- include('partials/errors', { message: message }) %>
         <form method="POST" action="/profile/update">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" name="username" required placeholder="Enter new username">
-            </div>
-            
-            <div class="form-group">
-                <label for="password">New Password</label>
-                <input type="password" name="password"  placeholder="Enter new password (leave blank to keep current)">
-            </div>
-            
-            <div class="form-group">
-                <label for="confirm_password">Confirm New Password</label>
-                <input type="password" name="confirm_password" placeholder="Confirm new password">
-            </div>
-            
+            <input type="text" name="first_name" placeholder="Enter First Name">
+            <input type="text" name="last_name" placeholder="Enter Last Name">
+            <input type="password" name="old_password" placeholder="Enter Old Password">
+            <input type="password" name="new_password" placeholder="Enter New Password">
+            <input type="password" name="confirm_password" placeholder="Confirm New Password">            
             <button type="submit" class="btn">Update Profile</button>
         </form>
         <div class="footer">
-            <p>Want to change your password? <a href="/change-password">Change Password</a></p>
+            <%- include('partials/errors', { message: message }) %>
         </div>
     </div>
 </body>
