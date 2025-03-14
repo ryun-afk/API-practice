@@ -8,13 +8,8 @@
     </head>
     <body>
         <div class="sidebar">
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/courses">Courses</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-            </ul>
+            <%- include('partials/sidebar_base') %>
         </div>
-        
         <div class="container">
             <h2>Create an Account</h2>
             <form method="POST" action="/register">

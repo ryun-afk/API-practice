@@ -4,44 +4,46 @@
         <title>Learning Management System Project</title>
         <%- include('partials/head') %>
         <link rel ='stylesheet' href='css/styles.css'>
-    </head>
-<body>
-    <%- include('partials/sidebar', { isLoggedIn: isLoggedIn }) %>
-    <div class="content">
-        <!-- Header -->
-        <header>
-            <h1>Blackboard Clone</h1>
-        </header>
+        </head>
+    <body>
+        <div class="sidebar">
+            <%- include('partials/sidebar_base') %>
+        </div>
+        <div class="content">
+            <!-- Header -->
+            <header>
+                <h1>Blackboard Clone</h1>
+            </header>
 
-        <section>
-            <h2>Objective</h2>
-            <p>My goal is to build dynamic, user-friendly web applications using Node JS. I will also learn how to set up a database and implement REST API for backend development. </p>
-        </section>
+            <section>
+                <h2>Objective</h2>
+                <p>My goal is to build dynamic, user-friendly web applications using Node JS. I will also learn how to set up a database and implement REST API for backend development. </p>
+            </section>
 
-        <section>
-            <!-- Maybe practice adding announcments to database -->
-            <!-- Pull announcments from database to be dynamic -->
-            <h2>Progress Log</h2>
-            <p>March 1, 2025: Create Database layout</p>
-            <p>March 1, 2025: Create webpages</p>
-            <p>March 2, 2025: Connect webpage to database</p>
-            <p>March 2, 2025: Implement GET API</p>
-            <p>March 3, 2025: Implement POST API</p>
-            <p>March 3, 2025: Implement DELETE API</p>
-            <p>March 4, 2025: Implement PUT API</p>
-            <p>March 5, 2025: Implement login authentication and user sessions</p>
-            <p>March 6, 2025: Learning ejs for dynamic webpages</p>
-            <p>March 7, 2025: Implement encryption and password hashing</p>
-            <p>March 7, 2025: Learn about ejs formatting and functions</p>
-            <p>March 7, 2025: Convert html files to ejs</p>
-            <p>March 8, 2025: Clean up login and register webpage design</p>
-            <p>March 9, 2025: Added sidebar on webpage
-            <p>March 9, 2025: Create dashboard for students</p>
-            <p>TBD: Implement scripts for testing</p>
-            <p>TBD: Create dashboard for instructors</p>
-            <p>TBD: Create dashboard for admins</p>
-        </section>
-    </div>
-</body>
+            <section>
+                <!-- Maybe practice adding announcments to database -->
+                <!-- Pull announcments from database to be dynamic -->
+                <h2>Progress Log</h2>
+                <p>March 1, 2025: Create Database layout</p>
+                <p>March 1, 2025: Create webpages</p>
+                <p>March 2, 2025: Connect webpage to database</p>
+                <p>March 2, 2025: Implement GET API</p>
+                <p>March 3, 2025: Implement POST API</p>
+                <p>March 3, 2025: Implement DELETE API</p>
+                <p>March 4, 2025: Implement PUT API</p>
+                <p>March 5, 2025: Implement login authentication and user sessions</p>
+                <p>March 6, 2025: Learning ejs for dynamic webpages</p>
+                <p>March 7, 2025: Implement encryption and password hashing</p>
+                <p>March 7, 2025: Learn about ejs formatting and functions</p>
+                <p>March 7, 2025: Convert html files to ejs</p>
+                <p>March 8, 2025: Clean up login and register webpage design</p>
+                <p>March 9, 2025: Added sidebar on webpage
+                <p>March 9, 2025: Create dashboard for students</p>
+                <p>TBD: Implement scripts for testing</p>
+                <p>TBD: Create dashboard for instructors</p>
+                <p>TBD: Create dashboard for admins</p>
+            </section>
+        </div>
+    </body>
 </html>
 
