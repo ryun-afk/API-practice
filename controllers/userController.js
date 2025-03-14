@@ -17,10 +17,9 @@ const getUserProfile = async (req, res) => {
 
 // Update user details
 const updateUser = async (req, res) => {
-    const { first_name, last_name, username } = req.body;
-    const userId = req.session.user.id;
-
     try {
+        const { first_name, last_name, username } = req.body;
+        const userId = req.session.user.id;
         await pool.query(queries.updateUser, [first_name, last_name, username, userId]);
         res.redirect('/profile');
     } catch (error) {
@@ -31,9 +30,8 @@ const updateUser = async (req, res) => {
 
 // Delete user account
 const deleteUser = async (req, res) => {
-    const userId = req.session.user.id;
-
     try {
+        const userId = req.session.user.id;
         await pool.query(queries.deleteUser, [userId]);
         req.session.destroy();
         res.redirect('/register');

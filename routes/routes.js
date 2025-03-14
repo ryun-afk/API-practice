@@ -4,8 +4,12 @@ const router = express.Router();
 const { 
     loginUser, 
     registerUser, 
-    logoutUser,  
+    logoutUser, 
 } = require('../controllers/authController');
+
+const { 
+    updateUser,
+} = require('../controllers/userController');
 
 const {
     isAuthenticated,
@@ -16,11 +20,15 @@ const {
 router.get('/register',notAuthenticated, (req, res) => {res.render('register',{message: ''});});
 router.get('/login',notAuthenticated, (req, res) => {res.render('login',{message: ''});});
 router.get('/dashboard',isAuthenticated, (req, res) => {res.render('dashboard',{user:req.session.user});});
-router.get('/profile',isAuthenticated, (req, res) => {res.render('profile',{user:req.session.user});});
+router.get('/profile',isAuthenticated, (req, res) => {res.render('profile',{message: ''});});
 router.get('/logout',logoutUser);
 
 router.post('/register',registerUser);
 router.post('/login',loginUser);
+router.post('/profile/update',updateUser);
+
+
+
 
 
 /*
