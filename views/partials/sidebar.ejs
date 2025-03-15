@@ -1,0 +1,44 @@
+<div class="sidebar">
+    <ul>
+        <li><a href="/">Home</a></li>
+    </ul>
+
+    <% if (user && user.role === "student") { %>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/assignments">Assignments</a></li>
+            <li><a href="/grades">Grades</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+        </ul>
+    <% } %>
+
+    <% if (user && user.role === "instructor") { %>
+        <ul>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/assignments">Assignments</a></li>
+            <li><a href="/grades">Grades</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/schedule">Schedule</a></li>
+        </ul>
+    <% } %>
+
+    <% if (user && user.role === "admin") { %>
+        <ul>
+            <li><a href="/admin">Admin</a></li>
+        </ul>
+    <% } %>
+    
+    <ul>
+        <% if (user) { %>
+            <li><a href="/settings">Settings</a></li>
+            <li><a href="/logout">Logout</a></li>
+        <% } else { %>
+            <li><a href="/login">Login</a></li>
+        <% } %>
+    </ul>
+</div>
+
+
+
+

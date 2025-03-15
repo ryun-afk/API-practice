@@ -7,10 +7,7 @@
         <link rel="stylesheet" href="/css/dashboard.css">
     </head>
     <body>
-        <div class="sidebar">
-            <%- include('partials/sidebar_base') %>
-            <%- include('partials/sidebar_student') %>
-        </div>
+        <%- include('partials/sidebar') %>
         <div class="content">
             <header>
                 <h1>Welcome <%= user.first_name %></h1>
