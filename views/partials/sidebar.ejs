@@ -1,27 +1,8 @@
 <div class="sidebar">
     <ul>
         <li><a href="/">Home</a></li>
+        <li><a href="/enrollment">Enrollment</a></li>
     </ul>
-
-    <% if (user && user.role === "student") { %>
-        <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/assignments">Assignments</a></li>
-            <li><a href="/grades">Grades</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/schedule">Schedule</a></li>
-        </ul>
-    <% } %>
-
-    <% if (user && user.role === "instructor") { %>
-        <ul>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/assignments">Assignments</a></li>
-            <li><a href="/grades">Grades</a></li>
-            <li><a href="/courses">Courses</a></li>
-            <li><a href="/schedule">Schedule</a></li>
-        </ul>
-    <% } %>
 
     <% if (user && user.role === "admin") { %>
         <ul>
@@ -31,6 +12,12 @@
     
     <ul>
         <% if (user) { %>
+            <li><a href="/dashboard">Dashboard</a></li>
+            <li><a href="/assignments">Assignments</a></li>
+            <li><a href="/grades">Grades</a></li>
+            <li><a href="/courses">Courses</a></li>
+            <li><a href="/forums">Forums</a></li>
+            <li><a href="/materials">Materials</a></li>
             <li><a href="/settings">Settings</a></li>
             <li><a href="/logout">Logout</a></li>
         <% } else { %>
