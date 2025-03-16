@@ -10,7 +10,8 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #2b5876, #4e4376);
     color: #ddd;
-    padding: 20px;
+    margin: 0px;
+    padding: 0px;
 }
 
 /* Header styling */
@@ -66,6 +67,37 @@ footer {
     background: #1f1f1f;
     color: #bbb;
     border-radius: 10px;
+}
+
+/* Style for the table */
+.course-table {
+    width: 100%;
+    border-collapse: collapse; /* Removes space between table cells */
+    margin: 20px 0;
+}
+
+/* Table header styling */
+.course-table th {
+    background-color: #f2f2f2;
+    color: #1f1f1f;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Table row styling */
+.course-table td {
+    background-color: white;
+    color:#1f1f1f;
+    padding: 12px;
+    text-align: left;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Hover effect for rows */
+.course-table tr:hover {
+    background-color: #f9f9f9;
 }
 
 /* Sidebar Styles */

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dashboard</title>
+        <%- include('partials/head') %>
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <%- include('partials/sidebar') %>
+        <header>
+            <h1>Courses</h1>            
+        </header>
+        
+        <div class = 'content'>
+            <% if (courses === 'empty') { %>
+                <p>No courses available.</p>
+            <% } else { %>
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Course Code</th>
+                            <th>Credits</th>
+                            <th>Professor</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <% courses.forEach(course => { %>
+                        <tr>
+                            <td><%= course.course_name %></td>
+                            <td><%= course.course_code %></td>
+                            <td><%= course.credits %></td>
+                            <td><%= course.professor_id %></td>
+                            <td>WIP(full or spots left)</td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            <% } %>
+        </div>
+    </body>
+</html>
