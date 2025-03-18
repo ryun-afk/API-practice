@@ -1,23 +1,24 @@
 <div class="sidebar">
     <ul>
         <li><a href="/">Home</a></li>
-        <li><a href="/enrollment">Enrollment</a></li>
     </ul>
 
-    <% if (user && user.role === "admin") { %>
-        <ul>
+    <ul>
+        <% if (user && user.role === "admin") { %>
             <li><a href="/admin">Admin</a></li>
-        </ul>
-    <% } %>
+        <% } %>
+    </ul>
+
+    <ul>
+        <% if (user && user.role === "professor") { %>
+            <li><a href="/">Professor Dashboard</a></li>
+        <% } %>
+    </ul>
     
     <ul>
         <% if (user) { %>
             <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/assignments">Assignments</a></li>
-            <li><a href="/grades">Grades</a></li>
-            <li><a href="/courses">Courses</a></li>
             <li><a href="/forums">Forums</a></li>
-            <li><a href="/materials">Materials</a></li>
             <li><a href="/settings">Settings</a></li>
             <li><a href="/logout">Logout</a></li>
         <% } else { %>
