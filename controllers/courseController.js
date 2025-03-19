@@ -17,13 +17,6 @@ async function getAllCourses(req,res) {
     }
 }
 
-
-
-
-
-
-
 module.exports = { 
-    getCourses, 
     getAllCourses,
 };
