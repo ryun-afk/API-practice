@@ -1,7 +1,7 @@
-const Course = require('../models/CourseModel');
+const course = require('../models/CourseModel');
 async function getAllCourses(req,res) {
     try {
-        const courses = await Course.findAll();
+        const courses = await course.findAll();
         //res.json(courses);
         res.render('courses',{
             message: 'Success',

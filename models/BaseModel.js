@@ -27,6 +27,7 @@ class BaseModel {
 
     static async findOne(criteria) {
         const query = buildSelectQuery(this.tableName(), criteria);
+        console.log('DEBUGGING QUERY:', query.string);
         try {
             const result = await pool.query(query.string, query.binds);
             return result.rows[0]; // Return the first matching row
@@ -37,7 +38,8 @@ class BaseModel {
     }
 
     static async findAll() {
-        const query = buildSelectQuery(this.tableName(), {}); // Empty criteria for all records
+        const query = buildSelectQuery(this.tableName(), {}); 
+        console.log('DEBUGGING QUERY:', query.string);
         try {
             const result = await pool.query(query.string, query.binds);
             return result.rows; // Return all rows
