@@ -27,8 +27,6 @@ app.set('views', path.join(__dirname, 'views'));
 // Import routes
 app.use('/', route);
 
-
-
 // Start the server
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

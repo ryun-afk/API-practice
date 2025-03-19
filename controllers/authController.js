@@ -1,6 +1,4 @@
 const bcrypt = require('bcryptjs');
-const pool = require('../config/dbconfig.js');
-const queries = require('../db/queries.js');
 
 // Login Controller
 const loginUser = async (req, res) => {

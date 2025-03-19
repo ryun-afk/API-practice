@@ -1,75 +1,82 @@
-const pool = require('../config/dbconfig.js');
+const pool = require('../config/dbConfig')
+const {
+    buildInsertQuery,
+    buildSelectQuery,
+    buildUpdateQuery,
+    buildDeleteQuery,
+} = require('../services/QueryBuilder');
+
 
 class BaseModel {
-    constructor(table) {
-        this.table = table;
-    }
 
-    async findAll() {
-        const query = `SELECT * FROM ${this.table}`;
+    static tableName() {
+        throw `expected class ${this.constructor.name} to implement ${this.tableName.name}`
+    }
+    
+    // CRUD methods
+    static async create(data) {
+        const query = buildInsertQuery(this.tableName(), data);
         try {
-            const res = await pool.query(query);
-            return res.rows;
+            const result = await pool.query(query.string, query.binds);
+            return result.rows[0]; // Return the inserted row
         } catch (err) {
-            console.error(`Error fetching from ${this.table}:`, err.stack);
-            throw err;
+            console.error('Error creating record:', err);
+            throw new Error('Error creating record');
         }
     }
 
-    async findById(id) {
-        const query = `SELECT * FROM ${this.table} WHERE id = $1`;
+    static async findOne(criteria) {
+        const query = buildSelectQuery(this.tableName(), criteria);
         try {
-            const res = await pool.query(query, [id]);
-            return res.rows[0];
+            const result = await pool.query(query.string, query.binds);
+            return result.rows[0]; // Return the first matching row
         } catch (err) {
-            console.error(`Error fetching from ${this.table}:`, err.stack);
-            throw err;
+            console.error('Error finding record:', err);
+            throw new Error('Error finding record');
         }
     }
 
-    async create(data) {
-        const columns = Object.keys(data).join(', ');
-        const values = Object.values(data);
-        const placeholders = values.map((_, index) => `$${index + 1}`).join(', ');
-
-        const query = `INSERT INTO ${this.table} (${columns}) VALUES (${placeholders}) RETURNING *`;
-
+    static async findAll() {
+        const query = buildSelectQuery(this.tableName(), {}); // Empty criteria for all records
         try {
-            const res = await pool.query(query, values);
-            return res.rows[0];
+            const result = await pool.query(query.string, query.binds);
+            return result.rows; // Return all rows
         } catch (err) {
-            console.error(`Error inserting into ${this.table}:`, err.stack);
-            throw err;
+            console.error('Error fetching records:', err);
+            throw new Error('Error fetching records');
         }
     }
 
-    async update(id, data) {
-        const columns = Object.keys(data);
-        const values = Object.values(data);
-        const setClause = columns.map((col, index) => `${col} = $${index + 1}`).join(', ');
-        
-        const query = `UPDATE ${this.table} SET ${setClause} WHERE id = $${columns.length + 1} RETURNING *`;
+    static async update(data, criteria) {
+        if (Object.keys(data).length === 0 || Object.keys(criteria).length === 0) {
+            throw new Error('Data and criteria are required for updating');
+        }
 
+        const query = buildUpdateQuery(this.tableName(), data, criteria);
         try {
-            const res = await pool.query(query, [...values, id]);
-            return res.rows[0];
+            const result = await pool.query(query.string, query.binds);
+            return result.rowCount; // Return number of rows affected
         } catch (err) {
-            console.error(`Error updating ${this.table}:`, err.stack);
-            throw err;
+            console.error('Error updating record:', err);
+            throw new Error('Error updating record');
         }
     }
 
-    async delete(id) {
-        const query = `DELETE FROM ${this.table} WHERE id = $1 RETURNING *`;
+    static async delete(criteria) {
+        if (!criteria || Object.keys(criteria).length === 0) {
+            throw new Error('Criteria is required for deleting');
+        }
 
+        const query = buildDeleteQuery(this.tableName(), criteria);
         try {
-            const res = await pool.query(query, [id]);
-            return res.rows[0];
+            const result = await pool.query(query.string, query.binds);
+            return result.rowCount; // Return number of rows affected
         } catch (err) {
-            console.error(`Error deleting from ${this.table}:`, err.stack);
-            throw err;
+            console.error('Error deleting record:', err);
+            throw new Error('Error deleting record');
         }
     }
+
 }
 
-module.exports = BaseModel;
+module.exports = BaseModel
