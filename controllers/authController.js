@@ -1,20 +1,28 @@
 const bcrypt = require('bcryptjs');
+const user = require('../models/UserModel');
 
 // Login Controller
 const loginUser = async (req, res) => {
     try {
-        // Validates if username is in database
+
+        // Error: Missing username or password
         const {username,password} = req.body;
-        const result = await pool.query(queries.getUserByUsername,[username]);
-        if (result.rows.length === 0) {
+        if (!username || !password) {
+            return res.render('login', {
+                message: 'Username and password are required.'
+            });
+        }
+        
+        // Error: Invalid username
+        const result = await user.findOne({username});
+        if (!result) {
             return res.render('login',{
                 message: 'Invalid credential'
             });
         }
 
-        // Validates if password matches
-        const user = result.rows[0];
-        const isPasswordValid = await bcrypt.compare(password,user.password);
+        // Error: Invalid password
+        const isPasswordValid = await bcrypt.compare(password,result.password);
         if (!isPasswordValid) {
             return res.render('login',{
                 message: 'Invalid credential'
@@ -29,7 +37,7 @@ const loginUser = async (req, res) => {
             last_name: user.last_name,
             role: user.role,
         };
-
+        
         return res.redirect('/dashboard');
     } catch (error) {
         console.error('Login error: ', error);
