@@ -22,7 +22,6 @@ router.get('/logout',logoutUser);
 
 router.get('/courses',isAuthenticated,getAllCourses);
 
-
 router.get('/login',notAuthenticated, (req, res) => {res.render('login',{message: ''});});
 router.get('/register',notAuthenticated, (req, res) => {res.render('register',{message: ''});});
 router.post('/register',registerUser);
