@@ -1,22 +1,23 @@
 const bcrypt = require('bcryptjs');
+const UserModel = require('../models/UserModel');
 
 // Update user details
 const updateUser = async (req,res) => {
-    const { firstName, lastName, oldPassword, newPassword, confirmPassword } = req.body;
-    const userID = req.session.user.id;
-
     try {
+        const { first_name, last_name, oldPassword, newPassword, confirmPassword } = req.body;
+        const user_id = req.session.user.id;
+
         // update first name
-        if (firstName) {
-            await pool.query(queries.updateFirstName, [firstName, userID]);
+        if (first_name) {
+            await UserModel.update({ first_name }, { user_id });
         }
 
         // update last name
-        if (lastName) {
-            await pool.query(queries.updateLastName, [lastName, userID]);
+        if (last_name) {
+            await UserModel.update({ last_name }, { user_id });
         }
 
-        // check new password
+        // update password
         if (newPassword || confirmPassword) {
             if (newPassword !== confirmPassword) {
                 return res.render('settings', {
@@ -25,8 +26,7 @@ const updateUser = async (req,res) => {
             }
 
             // check old password
-            const result = await pool.query(queries.getUserById,[userID])
-            const user = result.rows[0];
+            const user = await UserModel.findOne({user_id});
             const isPasswordValid = await bcrypt.compare(oldPassword, user.password);
             if (!isPasswordValid) {
                 return res.render('settings', {
@@ -36,12 +36,12 @@ const updateUser = async (req,res) => {
 
             // encrpt new password and update database
             const hashedPassword = await bcrypt.hash(newPassword, 10);
-            await pool.query(queries.updatePassword, [hashedPassword, userID]);
+            await UserModel.update({password: hashedPassword}, {user_id});
         }
-
-            return res.render('settings',{
-                message: 'User details updated'
-            });
+        
+        return res.render('settings',{
+            message: 'User details updated'
+        });
     } catch (error) {
         // Handle any database errors
         console.error("Error updating user:", error);
