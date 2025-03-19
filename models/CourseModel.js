@@ -1,10 +1,10 @@
 const BaseModel = require('./BaseModel');
 
-class Course extends BaseModel {
+class CourseModel extends BaseModel {
     static tableName() {
         return 'public.courses'
     }
 
 }
 
-module.exports = Course;
+module.exports = CourseModel;

@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const user = require('../models/UserModel');
+const UserModel = require('../models/UserModel');
 
 // Login Controller
 const loginUser = async (req, res) => {
@@ -14,15 +14,15 @@ const loginUser = async (req, res) => {
         }
         
         // Error: Invalid username
-        const result = await user.findOne({username});
-        if (!result) {
+        const user = await UserModel.findOne({username});
+        if (!user) {
             return res.render('login',{
                 message: 'Invalid credential'
             });
         }
 
         // Error: Invalid password
-        const isPasswordValid = await bcrypt.compare(password,result.password);
+        const isPasswordValid = await bcrypt.compare(password,user.password);
         if (!isPasswordValid) {
             return res.render('login',{
                 message: 'Invalid credential'
