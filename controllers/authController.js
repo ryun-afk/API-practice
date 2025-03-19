@@ -4,14 +4,7 @@ const UserModel = require('../models/UserModel');
 // Login Controller
 const loginUser = async (req, res) => {
     try {
-
-        // Error: Missing username or password
         const {username,password} = req.body;
-        if (!username || !password) {
-            return res.render('login', {
-                message: 'Username and password are required.'
-            });
-        }
         
         // Error: Invalid username
         const user = await UserModel.findOne({username});
@@ -50,17 +43,32 @@ const loginUser = async (req, res) => {
 // Register Controller
 const registerUser = async (req,res) => {
     try {
-        const {username,password} = req.body;
-        const existingUser = await pool.query(queries.getUserByUsername,[username]);
-        if (existingUser.rows.length > 0) { 
+        const {username,password,password2} = req.body;
+
+        // Error: Taken username
+        const existingUser = await UserModel.findOne({username});
+        if (existingUser) { 
             return res.render('register',{
                 message:'Username is taken'
             });
         };
 
+        // Error: Passwords do not match
+        if (password !== password2) {
+            return res.render('register',{
+                message:'Password does not match'
+            });
+        };
+
+        // create account
         const hashedPassword = await bcrypt.hash(password,10);
-        await pool.query(queries.addUser,[username,hashedPassword]);
-        return res.redirect('login');
+        await UserModel.create({
+            username: username,
+            password: hashedPassword
+        });
+        return res.render('register',{
+            message:'Account created'
+        });
 
     } catch (error){
         console.error('Registration Error: ', error);
@@ -71,18 +79,14 @@ const registerUser = async (req,res) => {
 };
 
 // Logout Controller
-const logoutUser = async (req, res) => {
+const logoutUser = (req, res) => {
     try {
-        req.session.destroy((err) => {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Error during logout'
-                });
-            }
-            return res.redirect('login');
+        req.session.destroy(() => {
+            res.redirect('login');
         });
-    } catch {
-        return res.render('login',{
+    } catch (error) {
+        console.error('Logout error: ', error);
+        res.render('login', {
             message: 'Internal Server Error'
         });
     }
