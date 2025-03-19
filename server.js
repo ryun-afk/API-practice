@@ -25,11 +25,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Import routes
-try {
-    app.use('/', route);
-} catch (error){
-    console.error(error);
-}
+app.use('/', route);
+
 
 
 // Start the server

@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 const { loginUser, registerUser, logoutUser } = require('../controllers/authController');
-const { getCourses } = require('../controllers/courseController');
+const { getAllCourses } = require('../controllers/courseController');
 const { updateUser} = require('../controllers/userController');
 const { isAuthenticated, notAuthenticated } = require('../middlewares/authMiddleware');
 
@@ -20,7 +20,7 @@ router.get('/forum',isAuthenticated, (req, res) => {res.render('forum',{user:req
 router.get('/settings',isAuthenticated, (req, res) => {res.render('settings',{message: ''});});
 router.get('/logout',logoutUser);
 
-router.get('/courses',isAuthenticated,getCourses);
+router.get('/courses',isAuthenticated,getAllCourses);
 
 
 router.get('/login',notAuthenticated, (req, res) => {res.render('login',{message: ''});});

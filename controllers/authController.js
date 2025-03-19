@@ -76,7 +76,6 @@ const logoutUser = async (req, res) => {
             return res.redirect('login');
         });
     } catch {
-        console.error('Logout Error: ', error);
         return res.render('login',{
             message: 'Internal Server Error'
         });

@@ -1,23 +1,29 @@
-const pool = require('../config/dbconfig.js');
-const queries = require('../db/queries.js');
-
-const getCourses = async (req, res) => {
+const Course = require('../models/CourseModel');
+async function getAllCourses(req,res) {
     try {
-        const result = await pool.query(queries.getCourses);
-        console.log(result.rows);
-        return res.render('courses',{
+        const courses = await Course.findAll();
+        //res.json(courses);
+        res.render('courses',{
             message: 'Success',
-            courses: result.rows
+            courses: courses,
         });
-    } catch (error) {
-        console.error(error);
-        return res.render('courses',{
-            message: 'Internal Server Error',
-            courses: 'empty'
-        });
+
+    } catch (err) {
+        //res.status.send('Error fetching courses');
+        res.render('courses',{
+            message: 'Error fetching courses',
+            courses: 'empty',
+        })
     }
-};
+}
+
+
+
+
+
+
 
 module.exports = { 
     getCourses, 
+    getAllCourses,
 };
