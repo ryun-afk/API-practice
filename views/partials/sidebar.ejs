@@ -5,19 +5,24 @@
 
     <ul>
         <% if (user && user.role === "admin") { %>
-            <li><a href="/admin">Admin</a></li>
+            <li><a href="/admin">Admin Dashboard</a></li>
         <% } %>
     </ul>
 
     <ul>
         <% if (user && user.role === "professor") { %>
-            <li><a href="/">Professor Dashboard</a></li>
+            <li><a href="/professor">Professor Dashboard</a></li>
         <% } %>
     </ul>
     
     <ul>
+        <% if (user && user.role === "student") { %>
+            <li><a href="/dashboard">Student Dashboard</a></li>
+        <% } %>
+    </ul>
+
+    <ul>
         <% if (user) { %>
-            <li><a href="/dashboard">Dashboard</a></li>
             <li><a href="/forums">Forums</a></li>
             <li><a href="/settings">Settings</a></li>
             <li><a href="/logout">Logout</a></li>
