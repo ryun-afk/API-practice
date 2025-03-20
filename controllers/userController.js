@@ -51,6 +51,25 @@ const updateUser = async (req,res) => {
     }
 }
 
+async function getAllUsers(req,res) {
+    try {
+        const users = await UserModel.findAll();
+        //res.json(admin);
+        res.render('admin',{
+            message: 'Success',
+            users: users,
+        });
+
+    } catch (err) {
+        //res.status.send('Error fetching admin');
+        res.render('admin',{
+            message: 'Error fetching admin',
+            users: 'empty',
+        })
+    }
+}
+
 module.exports = { 
     updateUser, 
+    getAllUsers,
 };
