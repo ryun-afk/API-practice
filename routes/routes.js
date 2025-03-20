@@ -7,12 +7,6 @@ const { getAllCourses } = require('../controllers/courseController');
 const { updateUser} = require('../controllers/userController');
 const { isAuthenticated, notAuthenticated } = require('../middlewares/authMiddleware');
 
-// middleware to make 'user' available
-router.use((req, res, next) => {
-    res.locals.user = req.session.user || null;
-    next();
-});
-
 // end-points
 router.get('/', (req, res) => {res.render('index');});
 router.get('/dashboard',isAuthenticated, (req, res) => {res.render('dashboard',{user:req.session.user});});
