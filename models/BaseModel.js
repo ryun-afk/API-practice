@@ -4,7 +4,7 @@ const {
     buildSelectQuery,
     buildUpdateQuery,
     buildDeleteQuery,
-} = require('../services/QueryBuilder');
+} = require('../services/BuildQuery');
 
 
 class BaseModel {
@@ -13,7 +13,7 @@ class BaseModel {
         throw `expected class ${this.constructor.name} to implement ${this.tableName.name}`
     }
     
-    // CRUD methods
+    // CRUD methods 
     static async create(data) {
         const query = buildInsertQuery(this.tableName(), data);
         try {
@@ -76,7 +76,6 @@ class BaseModel {
             throw new Error('Error deleting record');
         }
     }
-
 }
 
 module.exports = BaseModel

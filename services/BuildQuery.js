@@ -3,33 +3,27 @@ function buildInsertQuery(tableName, data) {
     if (Object.keys(data).length === 0) {
         throw new Error('Cannot build insert query with empty data');
     }
-    
+
     const columns = Object.keys(data).join(', ');
     const values = Object.values(data);
     const placeholders = values.map((_, index) => `$${index + 1}`).join(', ');
+    const query = `INSERT INTO ${tableName} (${columns}) VALUES (${placeholders}) RETURNING *`;
 
-    const queryString = `INSERT INTO ${tableName} (${columns}) VALUES (${placeholders}) RETURNING *`;
-
-    return {
-        string: queryString,
-        binds: values
-    };
+    return { string: query, binds: values };
 }
 
 // Helper function to build SELECT query
 function buildSelectQuery(tableName, criteria = {}) {
     if (Object.keys(criteria).length === 0) {
-        return {
-            string: `SELECT * FROM ${tableName}`,
-            binds: []
-        };
+        const query = `SELECT * FROM ${tableName}`;
+        const values = [];
+        return { string: query, binds: values };
     }
-
-    const whereClause = buildWhereClause(criteria);
-    return {
-        string: `SELECT * FROM ${tableName} WHERE ${whereClause}`,
-        binds: Object.values(criteria)
-    };
+    
+    const { whereClause } = buildWhereClause(criteria, 1);
+    const values =  Object.values(criteria);
+    const query = `SELECT * FROM ${tableName} WHERE ${whereClause}`;
+    return { string: query, binds: values };
 }
 
 // Helper function to build UPDATE query
@@ -37,16 +31,11 @@ function buildUpdateQuery(tableName, data, criteria) {
     if (Object.keys(data).length === 0 || Object.keys(criteria).length === 0) {
         throw new Error('Cannot build update query with empty data or criteria');
     }
-
-    const setClause = Object.keys(data)
-        .map((key, index) => `${key} = $${index + 1}`)
-        .join(', ');
-
-    const whereClause = buildWhereClause(criteria);
-    return {
-        string: `UPDATE ${tableName} SET ${setClause} WHERE ${whereClause}`,
-        binds: [...Object.values(data), ...Object.values(criteria)]
-    };
+    const setClause = Object.keys(data).map((key, index) => `${key} = $${index + 1}`).join(', ');
+    const { whereClause } = buildWhereClause(criteria, Object.keys(data).length + 1);
+    const values = [...Object.values(data), ...Object.values(criteria)];
+    const query = `UPDATE ${tableName} SET ${setClause} WHERE ${whereClause}`;
+    return { string: query, binds: values };
 }
 
 // Helper function to build DELETE query
@@ -55,21 +44,20 @@ function buildDeleteQuery(tableName, criteria) {
         throw new Error('Cannot build delete query with empty criteria');
     }
 
-    const whereClause = buildWhereClause(criteria);
-    return {
-        string: `DELETE FROM ${tableName} WHERE ${whereClause}`,
-        binds: Object.values(criteria)
-    };
+    const { whereClause } = buildWhereClause(criteria);
+    const values = Object.values(criteria);
+    const query = `DELETE FROM ${tableName} WHERE ${whereClause}`;
+    return { string: query, binds: values };
 }
 
-// Helper function to build WHERE clause
-function buildWhereClause(criteria) {
+// Helper function to build WHERE clause with incremental index for parameters
+function buildWhereClause(criteria, startingIndex) {
     if (Object.keys(criteria).length === 0) {
         throw new Error('WHERE clause cannot be empty');
     }
 
     const conditions = [];
-    let paramIndex = 1;
+    let paramIndex = startingIndex;  // Start indexing where the SET clause ends
 
     for (const [key, value] of Object.entries(criteria)) {
         if (typeof value === 'object' && value !== null) {
@@ -83,7 +71,6 @@ function buildWhereClause(criteria) {
             } else if (value.$ne) {
                 conditions.push(`${key} != $${paramIndex}`);
             } else {
-                // Add other operators as needed
                 throw new Error(`Unsupported operator in criteria: ${JSON.stringify(value)}`);
             }
         } else {
@@ -92,7 +79,7 @@ function buildWhereClause(criteria) {
         paramIndex++;
     }
 
-    return conditions.join(' AND ');
+    return { whereClause: conditions.join(' AND ') };
 }
 
 module.exports = {
@@ -100,5 +87,4 @@ module.exports = {
     buildSelectQuery,
     buildUpdateQuery,
     buildDeleteQuery,
-    buildWhereClause
 };
