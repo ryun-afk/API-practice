@@ -15,7 +15,16 @@ const notAuthenticated = (req, res, next) => {
     }
 };
 
+const isAdmin = (req, res, next) => {
+    if (req.session.user.role === 'admin') {
+        return next();
+    } else {
+        res.redirect('/dashboard');
+    }
+}
+
 module.exports = {
     isAuthenticated,
     notAuthenticated,
+    isAdmin,
 }
